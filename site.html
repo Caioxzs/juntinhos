@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juntinhos 💜</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0b3ff, #ffd6f9);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #4b0082;
+      text-align: center;
+      padding: 40px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    #contador {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .mensagem {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #6a0dad;
+      animation: bounce 4s infinite;
+    }
+
+    .mensagem-especial {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      color: #800080;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px white;
+      animation: sparkle 3s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(0.5) translateY(0); opacity: 1; }
+      100% { transform: scale(1.2) translateY(-100vh); opacity: 0; }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    button {
+      background-color: #b266ff;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #d8b2ff;
+      transition: background 0.3s ease, transform 0.2s ease;
+      animation: pulse 2s infinite;
+    }
+
+    button:hover {
+      background-color: #a64dff;
+      transform: scale(1.05);
+    }
+
+    .rodape {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #663399;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_4e8f19f285.mp3?filename=lofi-chill-145855.mp3" type="audio/mp3">
+  </audio>
+
+  <h1>Estamos juntinhos há 🥰</h1>
+  <div id="contador"></div>
+  <div class="mensagem">Cada segundo ao seu lado é um pedacinho do paraíso 💞✨</div>
+
+  <button onclick="mostrarMensagemEspecial()">Mensagem especial 💌</button>
+  <div id="mensagemEspecial" class="mensagem-especial">
+    💖 Meu amor! Eu te amo muito 💖<br>
+    🥹 Cada momento que passamos juntos foi especial...<br>
+    🌈 E espero que seja assim pra sempre! 💘
+  </div>
+
+  <div class="rodape">Feito com 💜 por um casal apaixonado 🐻💐</div>
+
+  <script>
+    const dataInicio = new Date('2024-12-31T00:00:00');
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - dataInicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('contador').textContent =
+        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️🥺`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    function mostrarMensagemEspecial() {
+      const msg = document.getElementById('mensagemEspecial');
+      msg.style.display = 'block';
+    }
+
+    function criarCoracao() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(criarCoracao, 500);
+
+    function criarBrilho() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = '100vh';
+      sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 3000);
+    }
+    setInterval(criarBrilho, 300);
+  </script>
+</body>
+</html>
